@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+span {
+  text-decoration: none;
+  margin-right: 20px;
+  color: black;
+}
+.LinkSidebar {
+  text-decoration: none;
+  list-style: none;
+}

@@ -1,0 +1,40 @@
+.continuer-sidebar {
+  padding: 40px;
+  background-color: var(--white);
+  height: 100%;
+}
+.logo-sidebar {
+  width: 150px;
+}
+.menu-items {
+  list-style: none;
+  width: 100%;
+  transition: all 0.4s ease;
+  padding-left: 0;
+}
+
+.title-board {
+  display: block;
+  font-size: 18px;
+}
+.board-link {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.active-item {
+  position: relative;
+}
+.active-item span {
+  color: var(--primary);
+  font-weight: 700;
+}
+.active-item span::before {
+  content: "";
+  border-left: 5px solid var(--primary);
+  height: 40px;
+  position: absolute;
+  left: -35px;
+  top: -8px;
+  border-radius: 30px;
+}
