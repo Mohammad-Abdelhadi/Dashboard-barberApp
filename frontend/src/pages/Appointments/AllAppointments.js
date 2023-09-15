@@ -42,18 +42,15 @@ const AllAppointments = () => {
           // Update the state to reflect the updated appointment status
           setUserData((prevUserData) => {
             const updatedUserData = prevUserData.map((user) => {
-              if (user.userId === userId) {
-                const updatedAppointments = user.appointments.map(
-                  (appointment) => {
-                    if (appointment._id === appointmentId) {
-                      appointment.status = newStatus;
-                    }
-                    return appointment;
+              const updatedAppointments = user.appointments.map(
+                (appointment) => {
+                  if (appointment._id === appointmentId) {
+                    appointment.status = newStatus;
                   }
-                );
-                return { ...user, appointments: updatedAppointments };
-              }
-              return user;
+                  return appointment;
+                }
+              );
+              return { ...user, appointments: updatedAppointments };
             });
             return updatedUserData;
           });
@@ -68,83 +65,77 @@ const AllAppointments = () => {
 
   return (
     <div>
-      <h2>Appointments</h2>
+      <h2>All Appointments</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <table className="table table-dark">
+        <table className="table table-striped">
           <thead>
             <tr>
-              <th>User ID</th>
-              <th>Appointments</th>
+              <th>Barber Name</th>
+              <th>Services</th>
+              <th>Time</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {userData.map((user) => (
-              <tr key={user.userId}>
-                <td>{user.userId}</td>
-                <td>
-                  {user.appointments.length === 0 ? (
-                    <p>There are no appointments</p>
-                  ) : (
+            {userData.map((user) =>
+              user.appointments.map((appointment) => (
+                <tr key={appointment._id}>
+                  <td>{appointment.barberName}</td>
+                  <td>
                     <ul>
-                      {user.appointments.map((appointment) => (
-                        <li key={appointment._id}>
-                          {appointment.barberName && (
-                            <p>Barber Name: {appointment.barberName}</p>
-                          )}
-                          {appointment.services && (
-                            <p>
-                              Services: {JSON.stringify(appointment.services)}
-                            </p>
-                          )}
-                          {appointment.time && <p>Time: {appointment.time}</p>}
-                          {appointment.status && (
-                            <p>Status: {appointment.status}</p>
-                          )}
-                          {/* Display additional appointment details here */}
+                      {appointment.services.map((service) => (
+                        <li key={service.name}>
+                          {service.name} - ${service.price}
                         </li>
                       ))}
                     </ul>
-                  )}
-                </td>
-                <td>
-                  {user.appointments.map((appointment) => (
-                    <div key={appointment._id}>
-                      {appointment.status === "pending" && (
-                        <>
-                          <button
-                            className="btn btn-success"
-                            onClick={() =>
-                              handleStatusUpdate(
-                                user.userId,
-                                appointment._id,
-                                "accepted"
-                              )
-                            }
-                          >
-                            Accept
-                          </button>
-                          <button
-                            className="btn btn-danger"
-                            onClick={() =>
-                              handleStatusUpdate(
-                                user.userId,
-                                appointment._id,
-                                "rejected"
-                              )
-                            }
-                          >
-                            Cancel
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  ))}
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td>{appointment.time}</td>
+                  <td>{appointment.status}</td>
+                  <td>
+                    <button
+                      className="btn btn-success m-2"
+                      onClick={() =>
+                        handleStatusUpdate(
+                          user.userId,
+                          appointment._id,
+                          "accepted"
+                        )
+                      }
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="btn btn-danger m-2"
+                      onClick={() =>
+                        handleStatusUpdate(
+                          user.userId,
+                          appointment._id,
+                          "rejected"
+                        )
+                      }
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() =>
+                        handleStatusUpdate(
+                          user.userId,
+                          appointment._id,
+                          "completed"
+                        )
+                      }
+                    >
+                      Complete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       )}

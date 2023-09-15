@@ -5,14 +5,13 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AllUsers from "./pages/AllUsers";
-import Appointments from "./pages/Appointments";
-// import Userss from "./pages/Userss";
-import Userss from "./pages/Userss";
 import AllAppointments from "./pages/Appointments/AllAppointments";
+import User from "./pages/User";
+import LiveAppointments from "./pages/Appointments/LiveAppointments";
+import PendingAppointments from "./pages/Appointments/PendingAppointments";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const { user } = useAuthContext();
@@ -20,23 +19,27 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="dashboardContent ">
+        <div className="dashboardContent">
           <div className="row">
-            <div className="col-2 ">
-              <AllUsers />
-            </div>
+            {user && ( // Check if the user is signed in
+              <div className="col-2">
+                <Sidebar />
+              </div>
+            )}
 
-            <div className="contant col-10   p-0">
+            <div className={`content col-${user ? "10" : "12"} p-0`}>
               <Navbar />
 
               <Routes>
                 <Route
                   path="/"
                   element={
-                    user && user.role === "admin" ? (
-                      <Home />
-                    ) : user && user.role === "user" ? (
-                      <User />
+                    user ? (
+                      user.role === "admin" ? (
+                        <Home />
+                      ) : (
+                        <User />
+                      )
                     ) : (
                       <Navigate to="/login" />
                     )
@@ -51,21 +54,24 @@ function App() {
                   path="/signup"
                   element={!user ? <Signup /> : <Navigate to="/" />}
                 />
-                <Route
-                  path="/users"
-                  // element={!user ? <Signup /> : <Navigate to="/users" />}
-                  element={<AllUsers />}
-                />
 
                 <Route
-                  path="/AllAppointments"
-                  // element={!user ? <Signup /> : <Navigate to="/users" />}
-                  element={<AllAppointments />}
+                  path="/PendingAppointments"
+                  element={
+                    user ? <PendingAppointments /> : <Navigate to="/signup" />
+                  }
                 />
                 <Route
-                  path="/userss"
-                  // element={!user ? <Signup /> : <Navigate to="/users" />}
-                  element={<Userss />}
+                  path="/LiveAppointments"
+                  element={
+                    user ? <LiveAppointments /> : <Navigate to="/signup" />
+                  }
+                />
+                <Route
+                  path="/AllAppointments"
+                  element={
+                    user ? <AllAppointments /> : <Navigate to="/signup" />
+                  }
                 />
               </Routes>
             </div>

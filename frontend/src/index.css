@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 :root {
   --primary: #1aac83;
@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: "Poppins";
 }
+
 header {
   background: #fff;
 }
@@ -24,7 +25,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -41,7 +42,7 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .workout-details h4 {
   margin: 0 0 10px 0;
@@ -64,7 +65,8 @@ header a {
   color: #333;
 }
 
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -81,6 +83,7 @@ form button {
   border: 0;
   color: #fff;
   padding: 10px;
+  margin-top: 10px;
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
@@ -101,7 +104,8 @@ nav {
   display: flex;
   align-items: center;
 }
-nav a, nav button {
+nav a,
+nav button {
   margin-left: 10px;
 }
 nav button {
@@ -115,14 +119,14 @@ nav button {
   font-size: 1em;
 }
 
-form.signup, form.login {
+form.signup,
+form.login {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
   background: #fff;
   border-radius: 4px;
-} */
-
- .contant {
+}
+*/ .contant {
   background-color: "#fafafa";
-} 
+}

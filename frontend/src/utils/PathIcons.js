@@ -28,8 +28,8 @@ export class PathIcons {
   static PendingAppointments = (
     <FontAwesomeIcon icon={faUsers} className="auth-icon" style={sideIcon} />
   );
-  static LiveAppointemnts = (
-    <FontAwesomeIcon icon={faFile} className="auth-icon" style={sideIcon} />
+  static LiveAppointments = (
+    <FontAwesomeIcon icon={faUsers} className="auth-icon" style={sideIcon} />
   );
   static AllAppointments = (
     <FontAwesomeIcon icon={faUsers} className="auth-icon" style={sideIcon} />

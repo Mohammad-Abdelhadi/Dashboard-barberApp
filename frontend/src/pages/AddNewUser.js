@@ -20,19 +20,22 @@ const AddNewUser = () => {
   const registerUser = async (email, password, role) => {
     try {
       // Call your API endpoint to register the user
-      const response = await fetch("https://barberapp.onrender.com/api/user/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, role }),
-      });
+      const response = await fetch(
+        "https://barberapp.onrender.com/api/user/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password, role }),
+        }
+      );
 
       if (response.ok) {
         // You should define a function here that fetches the user data
         // and updates the state accordingly (similar to the Home component).
         // For example:
-        fetchUsers();
+        registerUser();
         console.log("User registered successfully!");
       } else {
         console.error("Error registering user");

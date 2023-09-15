@@ -12,7 +12,10 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="container bg-light h-75 d-flex justify-content-end">
+      <div
+        className="container-fluid bg-light h-100 d-flex justify-content-end p-1"
+    
+      >
         <nav>
           {user && (
             <div>

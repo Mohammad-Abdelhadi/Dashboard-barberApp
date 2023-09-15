@@ -3,8 +3,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import AddNewUser from "./AddNewUser";
 import { useLogout } from "../hooks/useLogout";
 // import "./style.css";
-import AllUsers from "./AllUsers";
-import Userss from "./Userss";
 
 const Home = () => {
   const { user } = useAuthContext();
@@ -75,7 +73,10 @@ const Home = () => {
   return (
     <div className="home">
       <div className="user-list">
-        <h2>User List ({filteredData.length})</h2>
+        <div className="d-flex justify-content-between p-3">
+          <h2>User List ({filteredData.length})</h2>
+          <button className="btn btn-success"> + Add New User </button>
+        </div>
         <input
           type="text"
           placeholder="Search by name or role"
@@ -114,7 +115,7 @@ const Home = () => {
             <tr>
               <th>User ID</th>
               <th>Email</th>
-              <th>password</th>
+              <th>Appointments</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
@@ -124,7 +125,8 @@ const Home = () => {
               <tr key={user._id} className="user">
                 <td>{user._id}</td>
                 <td>{user.email}</td>
-                <td>{user.password}</td>
+                <td>{user.appointments.length}</td>
+
                 <td>{user.role}</td>
                 <td>
                   <button
