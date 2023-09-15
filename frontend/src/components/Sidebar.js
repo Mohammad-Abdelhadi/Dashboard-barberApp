@@ -27,14 +27,14 @@ const Sidebar = () => {
         />
 
         <Board
-          link={"/AllAppointments"}
-          title={"Appointments"}
-          icon={PathIcons.AllAppointments}
-        />
-        <Board
           link={"/LiveAppointments"}
           title={"Live "}
           icon={PathIcons.LiveAppointments}
+        />
+        <Board
+          link={"/AllAppointments"}
+          title={"Appointments"}
+          icon={PathIcons.AllAppointments}
         />
       </ul>
     </div>

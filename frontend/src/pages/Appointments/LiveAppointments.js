@@ -91,6 +91,8 @@ const LiveAppointments = () => {
                           {appointment.services.map((service) => (
                             <li key={service.name}>
                               {service.name} - ${service.price}
+                              <p>{`${service.time} Min`}</p>
+
                             </li>
                           ))}
                         </ul>
