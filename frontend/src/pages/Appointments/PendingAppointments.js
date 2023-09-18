@@ -85,7 +85,7 @@ const PendingAppointments = () => {
                 if (appointment.status === "pending") {
                   return (
                     <tr key={appointment._id}>
-                      <td>{appointment.barberName}</td>
+                      <td>{appointment.barber.name}</td>
                       <td>
                         <ul>
                           {appointment.services.map((service) => (
@@ -96,7 +96,9 @@ const PendingAppointments = () => {
                           ))}
                         </ul>
                       </td>
-                      <td>{appointment.time}</td>
+                      <td>
+                       {appointment.date}
+                      </td>
                       <td>{appointment.status}</td>
                       <td>
                         <button
