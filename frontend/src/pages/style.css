@@ -1,3 +1,6 @@
+/* styles.css (or your preferred CSS file) */
+
+/* User List Table Styles */
 .user-table {
   width: 100%;
   border-collapse: collapse;
@@ -33,12 +36,60 @@
   background-color: #c0392b;
 }
 
-.edit-button {
-  background-color: green;
+/* Edit User Modal Styles */
+.edit-user-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  width: 600px; /* Adjust the width as needed */
+  max-width: 80%;
 }
-#edit-button {
-  background-color: "green";
+
+.edit-user-modal.active {
+  display: block;
 }
-.edit-button:hover {
-  background-color: #2980b9;
+
+.modal-header .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body form {
+  margin-bottom: 0;
+}
+
+.modal-body .form-control {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
+
+.success-message {
+  padding: 10px;
+  background: white;
+  border: 1px solid green;
+  color: green;
+  border-radius: 4px;
+  margin: 20px 0;
+  text-align: center;
+font-size: 16px;
 }

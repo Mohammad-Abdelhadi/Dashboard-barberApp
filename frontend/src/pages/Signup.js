@@ -23,16 +23,7 @@ const Signup = () => {
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
-      {role === "admin" && ( // Conditionally render the role input for admins
-        <div>
-          <label>Role:</label>
-          <input
-            type="text"
-            value={role}
-            disabled
-          />
-        </div>
-      )}
+
       <label>Password:</label>
       <input
         type="password"

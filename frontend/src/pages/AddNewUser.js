@@ -1,74 +1,99 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
+import "./style.css";
+import { useSignup } from "../hooks/useSignup";
+import { NewUser } from "../hooks/NewUser";
 
-const AddNewUser = () => {
-  const [email, setEmail] = useState("test1@test.com");
-  const [password, setPassword] = useState("aA12345678#");
-  const [role, setRole] = useState("user");
+const AddNewUser = ({ onClose }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null); // Add success message state
+  const { signup, error, isLoading } = NewUser();
 
   const handleForm = async (e) => {
     e.preventDefault();
-
-    // Call the register function with email, password, and role
-    await registerUser(email, password, role);
-
-    // Clear form fields
-    // setEmail("");
-    // setPassword("");
-    // setRole("");
-  };
-
-  const registerUser = async (email, password, role) => {
     try {
-      // Call your API endpoint to register the user
-      const response = await fetch(
-        "https://barberapp.onrender.com/api/user/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password, role }),
-        }
-      );
-
-      if (response.ok) {
-        // You should define a function here that fetches the user data
-        // and updates the state accordingly (similar to the Home component).
-        // For example:
-        registerUser();
-        console.log("User registered successfully!");
-      } else {
-        console.error("Error registering user");
-      }
+      await signup(email, password, role);
+      setSuccessMessage("User added successfully!");
+      setEmail("");
+      setPassword("");
+      setRole("");
     } catch (error) {
-      console.error("Error registering user:", error);
+      isLoading(true);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleForm}>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <Modal
+      isOpen={true}
+      onRequestClose={onClose}
+      contentLabel="Add New User Modal"
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        },
+        content: {
+          width: "500px",
+          height: "360px",
+          margin: "auto",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.5)",
+        },
+      }}
+    >
+      <div className="modal-header">
+        <h3>Add New User</h3>
+        <button
+          type="button"
+          className="close btn btn-danger"
+          onClick={onClose}
+        >
+          &times;
+        </button>
+      </div>
+      <div className="modal-body">
+        {/* Display success message if available */}
+        {successMessage && !error && (
+          <div className="success-message">{successMessage}</div>
+        )}
+
+        <form onSubmit={handleForm}>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            />
+          </div>
+          {error && <div className="error">{error}</div>}
+          <button className="w-100" disabled={isLoading}>
+            Add New User
+          </button>
+        </form>
+      </div>
+    </Modal>
   );
 };
 

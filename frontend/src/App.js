@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <div className="dashboardContent">
-          <div className="row">
+          <div className="row p-0 m-0">
             {user && ( // Check if the user is signed in
               <div className="col-2">
                 <Sidebar />
