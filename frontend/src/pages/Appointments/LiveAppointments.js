@@ -85,19 +85,20 @@ const LiveAppointments = () => {
                 if (appointment.status === "accepted") {
                   return (
                     <tr key={appointment._id}>
-                      <td>{appointment.barberName}</td>
+                      <td>{appointment.barber.name}</td>
                       <td>
                         <ul>
                           {appointment.services.map((service) => (
                             <li key={service.name}>
                               {service.name} - ${service.price}
                               <p>{`${service.time} Min`}</p>
-
                             </li>
                           ))}
                         </ul>
                       </td>
-                      <td>{appointment.time}</td>
+                      <td>
+                        {appointment.date} | {appointment.time}
+                      </td>{" "}
                       <td>{appointment.status}</td>
                       <td>
                         <button

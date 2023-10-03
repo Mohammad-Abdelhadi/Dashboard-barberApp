@@ -83,7 +83,7 @@ const AllAppointments = () => {
             {userData.map((user) =>
               user.appointments.map((appointment) => (
                 <tr key={appointment._id}>
-                  <td>{appointment.barberName}</td>
+                  <td>{appointment.barber.name}</td>
                   <td>
                     <ul>
                       {appointment.services.map((service) => (
@@ -94,7 +94,7 @@ const AllAppointments = () => {
                       ))}
                     </ul>
                   </td>
-                  <td>{appointment.time}</td>
+                  <td>{appointment.date} | {appointment.time}</td>
                   <td>{appointment.status}</td>
                   <td>
                     <button

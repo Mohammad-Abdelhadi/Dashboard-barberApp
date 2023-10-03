@@ -97,7 +97,7 @@ const PendingAppointments = () => {
                         </ul>
                       </td>
                       <td>
-                       {appointment.date}
+                       {appointment.date} | {appointment.time}
                       </td>
                       <td>{appointment.status}</td>
                       <td>

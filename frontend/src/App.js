@@ -15,13 +15,13 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   const { user } = useAuthContext();
-
+ 
   return (
     <div className="App">
       <BrowserRouter>
         <div className="dashboardContent">
           <div className="row p-0 m-0">
-            {user && ( // Check if the user is signed in
+          {user && user.role === "admin" && (
               <div className="col-2">
                 <Sidebar />
               </div>
@@ -31,20 +31,20 @@ function App() {
               <Navbar />
 
               <Routes>
-                <Route
-                  path="/"
-                  element={
-                    user ? (
-                      user.role === "admin" ? (
-                        <Home />
-                      ) : (
-                        <User />
-                      )
-                    ) : (
-                      <Navigate to="/login" />
-                    )
-                  }
-                />
+              <Route
+  path="/"
+  element={
+    user ? (
+      user.role === "admin" ? (
+        <Home />
+      ) : (
+        <Navigate to="/error" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
 
                 <Route
                   path="/login"

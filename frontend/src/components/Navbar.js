@@ -12,10 +12,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <div
-        className="container-fluid bg-light h-100 d-flex justify-content-end p-1"
-    
-      >
+      <div className="container-fluid bg-light h-100 d-flex justify-content-end p-1">
         <nav>
           {user && (
             <div>
@@ -23,12 +20,6 @@ const Navbar = () => {
               <button className="btn btn-danger m-2" onClick={handleClick}>
                 Log out
               </button>
-            </div>
-          )}
-          {!user && (
-            <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
             </div>
           )}
         </nav>

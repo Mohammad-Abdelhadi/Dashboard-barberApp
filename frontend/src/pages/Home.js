@@ -15,7 +15,7 @@ const Home = () => {
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
   // Function to open the Add User modal
-  const usersPerPage = 5;
+  const usersPerPage = 6;
 
   const fetchUsers = async () => {
     try {
@@ -91,7 +91,7 @@ const Home = () => {
     if (user) {
       fetchUsers();
     }
-  }, [user,userData]);
+  }, [user]);
 
   const filteredData = useMemo(() => {
     return userData.filter(
@@ -121,7 +121,11 @@ const Home = () => {
       <div className="user-list">
         <div className="d-flex justify-content-between p-3">
           <h2>User List ({filteredData.length})</h2>
-          <button className="btn btn-success" onClick={handleAddButtonClick}>
+          <button
+            className="btn btn-custom addnewuser"
+            style={{ color: "white" }}
+            onClick={handleAddButtonClick}
+          >
             + Add New User
           </button>
           {isAddUserModalOpen && (
@@ -169,17 +173,30 @@ const Home = () => {
             ))}
           </tbody>
         </table>
-        <ul className="pagination">
+        <ul
+          className="pagination"
+          style={{ color: "white", display: "flex", justifyContent: "center" }}
+        >
           {Array.from({
             length: Math.ceil(filteredData.length / usersPerPage),
           }).map((_, index) => (
             <li
               key={index}
+              style={{ color: "white" }}
               className={`page-item ${
                 currentPage === index + 1 ? "active" : ""
               }`}
             >
-              <button className="page-link" onClick={() => paginate(index + 1)}>
+              <button
+                className="page-link "
+                style={{
+                  backgroundColor: "orange",
+                  color: "white",
+                  boxShadow: "0px 0px 5px 0px black",
+                  padding: "5px 20px",
+                }}
+                onClick={() => paginate(index + 1)}
+              >
                 {index + 1}
               </button>
             </li>
@@ -190,7 +207,6 @@ const Home = () => {
       {/* Conditionally render the Add User modal */}
 
       {editingUser && (
-        
         <div className={`edit-user-modal ${editingUser ? "active" : ""}`}>
           <h3>Edit User</h3>
           <label>Email:</label>
@@ -217,11 +233,11 @@ const Home = () => {
               setEditingUser({ ...editingUser, role: e.target.value })
             }
           />
-          <button className="btn btn-success ml-2" onClick={saveEditedUser}>
+          <button className="btn btn-success ml-2 " onClick={saveEditedUser}>
             Save
           </button>
           <button
-            className="btn btn-danger m-2 justify-content-end align-items-end"
+            className="btn btn-danger m-2 "
             onClick={() => {
               setEditingUser(null);
               const modal = document.querySelector(".edit-user-modal");
